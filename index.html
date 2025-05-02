@@ -69,44 +69,38 @@
     Visits: <span id="countNum">0</span>
 </div>
 
-<!-- Visible counter (initially hidden) -->
-<div id="visitCounter" style="display:none; position:fixed; bottom:10px; right:10px; background:#fff; padding:5px 10px; border:1px solid #ccc; z-index:9999; border-radius:5px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1); font-size:14px;">
+<!-- Simplified counter container -->
+<div id="visitCounter" style="display:none; position:fixed; bottom:10px; right:10px; background:#fff; padding:5px 10px; border:1px solid #ccc; z-index:9999;">
     Visits: <span id="countNum">0</span>
 </div>
 
-<!-- Invisible click area (to trigger counter visibility) -->
-<div id="secretClick" style="position:fixed; top:0; left:0; width:25px; height:25px; z-index:9999; cursor:pointer;"></div>
+<!-- Secret click area remains hidden -->
+<div id="secretClick" style="position:fixed; top:0; left:0; width:25px; height:25px; cursor:pointer;"></div>
 
-<!-- Hidden image to trigger counter update (still hidden) -->
-<img id="counterImg" src="https://counterapi.dev/api/page-counter?url=https://abdulrahmann001.github.io/" style="display:none;" />
-
-<!-- Script to fetch and display counter -->
 <script>
-  // Function to update the counter value
-  function updateCount() {
-    const img = document.getElementById("counterImg");
-    const url = img.src + "&json=true";
-    fetch(url)
+  // Proper API call implementation
+  function updateCounter() {
+    // First call to INCREMENT the counter
+    const inc = new Image();
+    inc.src = "https://counterapi.dev/api/page-counter?url=https://abdulrahmann001.github.io/";
+
+    // Second call to GET the updated count
+    fetch("https://counterapi.dev/api/page-counter?url=https://abdulrahmann001.github.io/&json=true")
       .then(res => res.json())
       .then(data => {
-        document.getElementById("countNum").innerText = data.count;
+        document.getElementById('countNum').textContent = data.count;
       });
   }
 
-  // Trigger to display the visit counter when the secret click area is clicked
-  document.getElementById("secretClick").addEventListener("click", function () {
+  // Fixed toggle functionality
+  document.getElementById("secretClick").addEventListener("click", function() {
     const counter = document.getElementById("visitCounter");
-    if (counter.style.display === "none") {
-      counter.style.display = "block";  // Show the counter
-    } else {
-      counter.style.display = "none";  // Hide the counter
-    }
+    counter.style.display = counter.style.display === "none" ? "block" : "none";
   });
 
-  // Fetch the count when the page loads
-  updateCount();
+  // Initialize when page loads
+  window.addEventListener('load', updateCounter);
 </script>
-
 
 
 
