@@ -64,41 +64,54 @@
 </head>
 <body>
 
-    <!-- Visible counter -->
-<div id="visitCounter" style="position:fixed; bottom:10px; right:10px; background:#fff; padding:5px 10px; border:1px solid #ccc; z-index:9999; border-radius:5px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1); font-size:14px;">
+  <!-- Counter Container (initially hidden) -->
+<div id="visitCounter" style="display:none; position:fixed; bottom:10px; right:10px; background:#fff; padding:8px 15px; border:1px solid #ccc; z-index:9999; border-radius:8px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1); font-size:14px;">
     Visits: <span id="countNum">0</span>
 </div>
 
-<!-- Simplified counter container -->
-<div id="visitCounter" style="display:none; position:fixed; bottom:10px; right:10px; background:#fff; padding:5px 10px; border:1px solid #ccc; z-index:9999;">
-    Visits: <span id="countNum">0</span>
-</div>
-
-<!-- Secret click area remains hidden -->
-<div id="secretClick" style="position:fixed; top:0; left:0; width:25px; height:25px; cursor:pointer;"></div>
+<!-- Hidden Trigger Area (top-left corner) -->
+<div id="secretClick" style="position:fixed; top:0; left:0; width:30px; height:30px; z-index:9999; cursor:pointer;"></div>
 
 <script>
-  // Proper API call implementation
-  function updateCounter() {
-    // First call to INCREMENT the counter
-    const inc = new Image();
-    inc.src = "https://counterapi.dev/api/page-counter?url=https://abdulrahmann001.github.io/";
+  // Initialize counter visibility state
+  let counterVisible = false;
 
-    // Second call to GET the updated count
-    fetch("https://counterapi.dev/api/page-counter?url=https://abdulrahmann001.github.io/&json=true")
-      .then(res => res.json())
+  // Counter API Configuration
+  const API_URL = "https://counterapi.dev/api/page-counter";
+  const SITE_URL = "https://abdulrahmann001.github.io/";
+
+  // Function to handle counting
+  function updateCounter() {
+    // First request - increment the counter
+    const incrementRequest = new Image();
+    incrementRequest.src = `${API_URL}?url=${encodeURIComponent(SITE_URL)}`;
+
+    // Second request - get updated count
+    fetch(`${API_URL}?url=${encodeURIComponent(SITE_URL)}&json=true`)
+      .then(response => response.json())
       .then(data => {
         document.getElementById('countNum').textContent = data.count;
-      });
+      })
+      .catch(error => console.error('Counter error:', error));
   }
 
-  // Fixed toggle functionality
-  document.getElementById("secretClick").addEventListener("click", function() {
-    const counter = document.getElementById("visitCounter");
-    counter.style.display = counter.style.display === "none" ? "block" : "none";
+  // Toggle counter visibility
+  document.getElementById('secretClick').addEventListener('click', function() {
+    const counter = document.getElementById('visitCounter');
+    counterVisible = !counterVisible;
+    counter.style.display = counterVisible ? 'block' : 'none';
+    
+    // Update count only when showing
+    if(counterVisible) updateCounter();
   });
 
-  // Initialize when page loads
+  // Mobile-friendly touch handling
+  document.getElementById('secretClick').addEventListener('touchend', function(e) {
+    e.preventDefault(); // Prevent default touch behavior
+    this.click(); // Trigger the click handler
+  });
+
+  // Initial counter update
   window.addEventListener('load', updateCounter);
 </script>
 
