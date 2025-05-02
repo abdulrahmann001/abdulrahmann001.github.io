@@ -63,60 +63,6 @@
     </style>
 </head>
 <body>
-
-<!-- Counter Container (hidden by default) -->
-<div id="visitCounter" style="display:none; position:fixed; bottom:10px; right:10px; background:#fff; padding:8px 15px; border:1px solid #ccc; z-index:9999; border-radius:8px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1); font-size:14px;">
-    Visits: <span id="countNum">0</span>
-</div>
-
-<!-- Hidden Trigger Area (top-left corner) -->
-<div id="secretClick" style="position:fixed; top:0; left:0; width:30px; height:30px; z-index:9999; cursor:pointer;"></div>
-
-<script>
-  // Configuration
-  const SITE_ID = 'abdulrahmann001.github.io';
-  
-  // Automatically count ALL page loads
-  window.addEventListener('load', async () => {
-    try {
-      // CountAPI (primary)
-      await fetch(`https://api.countapi.xyz/hit/${SITE_ID}/auto_visits`);
-    } catch {
-      try {
-        // VisitorAPI (fallback)
-        await fetch(`https://visitorapi.vercel.app/api/counter?site=${SITE_ID}`);
-      } catch {
-        // localStorage (last resort)
-        const localCount = parseInt(localStorage.getItem('autoVisits') || 0;
-        localStorage.setItem('autoVisits', localCount + 1);
-      }
-    }
-  });
-
-  // Toggle counter visibility
-  document.getElementById('secretClick').addEventListener('click', async () => {
-    const counter = document.getElementById('visitCounter');
-    counter.style.display = counter.style.display === 'none' ? 'block' : 'none';
-    
-    if (counter.style.display === 'block') {
-      try {
-        const response = await fetch(`https://api.countapi.xyz/get/${SITE_ID}/auto_visits`);
-        const data = await response.json();
-        document.getElementById('countNum').textContent = data.value;
-      } catch {
-        document.getElementById('countNum').textContent = localStorage.getItem('autoVisits') || '0';
-      }
-    }
-  });
-</script>
-
-
-
-
-
- 
-
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -154,10 +100,9 @@
             <div class="row">
                 <div class="col-lg-8">
                     <p class="lead">
-                        Computer Science graduate from Soran University with comprehensive expertise in web development 
-                        and software solutions. strong problem-solving skills 
-                        and experience in multiple programming paradigms. Skilled in developing efficient systems 
-                        with a focus on user-centric design and practical implementation.
+                      Computer Science graduate from Soran University with comprehensive experience in web development and software solutions.
+                        Strong problem-solving skills and general experience with a wide range of software applications and tools. .
+                        A logical and open-minded individual who values diverse perspectives and embraces collaboration.
                     </p>
                 </div>
                 <div class="col-lg-4">
@@ -328,6 +273,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
