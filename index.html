@@ -64,48 +64,74 @@
 </head>
 <body>
 
-    <!-- Counter Container -->
+   <!-- Counter Container (hidden by default) -->
 <div id="visitCounter" style="display:none; position:fixed; bottom:10px; right:10px; background:#fff; padding:8px 15px; border:1px solid #ccc; z-index:9999; border-radius:8px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1); font-size:14px;">
     Visits: <span id="countNum">0</span>
 </div>
 
-<!-- Hidden Trigger -->
+<!-- Hidden Trigger Area (top-left corner) -->
 <div id="secretClick" style="position:fixed; top:0; left:0; width:30px; height:30px; z-index:9999; cursor:pointer;"></div>
 
 <script>
   // Configuration
-  const NAMESPACE = 'abdulrahmann001.github.io';
-  const KEY = 'visits';
+  const SITE_ID = 'abdulrahmann001.github.io';
+  let counterVisible = false;
+  let visitCount = localStorage.getItem('localVisitCount') || 0;
 
-  // Counter Control
-  document.getElementById('secretClick').addEventListener('click', async function() {
-    const counter = document.getElementById('visitCounter');
+  // Main counter function
+  async function updateCounter() {
+    const counterElement = document.getElementById('countNum');
     
-    // Toggle visibility
-    counter.style.display = counter.style.display === 'none' ? 'block' : 'none';
-    
-    // Update count only when visible
-    if(counter.style.display === 'block') {
+    try {
+      // Try CountAPI first
+      const response = await fetch(`https://api.countapi.xyz/hit/${SITE_ID}/visits`);
+      const data = await response.json();
+      counterElement.textContent = data.value;
+    } catch (apiError) {
+      console.warn('API failed, using localStorage fallback');
+      
+      // Fallback 1: VisitorAPI
       try {
-        // First hit the counter
-        await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`);
+        const fallbackResponse = await fetch(`https://visitorapi.vercel.app/api/counter?site=${SITE_ID}`);
+        const fallbackData = await fallbackResponse.json();
+        counterElement.textContent = fallbackData.count;
+      } catch (fallbackError) {
+        console.warn('Fallback API failed, using localStorage');
         
-        // Then get updated count
-        const response = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`);
-        const data = await response.json();
-        document.getElementById('countNum').textContent = data.value;
-      } catch(error) {
-        console.error('Counter error:', error);
-        document.getElementById('countNum').textContent = 'N/A';
+        // Final fallback: localStorage
+        visitCount++;
+        localStorage.setItem('localVisitCount', visitCount);
+        counterElement.textContent = visitCount;
       }
     }
-  });
+  }
 
-  // Mobile support
+  // Click handler with better mobile support
+  function handleCounterClick() {
+    const counter = document.getElementById('visitCounter');
+    counterVisible = !counterVisible;
+    counter.style.display = counterVisible ? 'block' : 'none';
+    
+    if (counterVisible) {
+      updateCounter();
+      
+      // Refresh count every 5 seconds while visible
+      const refreshInterval = setInterval(() => {
+        if (!counterVisible) clearInterval(refreshInterval);
+        else updateCounter();
+      }, 5000);
+    }
+  }
+
+  // Event listeners
+  document.getElementById('secretClick').addEventListener('click', handleCounterClick);
   document.getElementById('secretClick').addEventListener('touchend', function(e) {
     e.preventDefault();
-    this.click();
-  });
+    handleCounterClick();
+  }, { passive: false });
+
+  // Initialize
+  document.getElementById('countNum').textContent = visitCount;
 </script>
 
 
