@@ -63,6 +63,47 @@
     </style>
 </head>
 <body>
+
+    <!-- Visible counter -->
+<div id="visitCounter" style="position:fixed; bottom:10px; right:10px; background:#fff; padding:5px 10px; border:1px solid #ccc; z-index:9999; border-radius:5px; box-shadow:0 4px 6px rgba(0, 0, 0, 0.1); font-size:14px;">
+    Visits: <span id="countNum">0</span>
+</div>
+
+<!-- Invisible click area (to trigger counter visibility) -->
+<div id="secretClick" style="position:fixed; top:0; left:0; width:25px; height:25px; z-index:9999; cursor:pointer;"></div>
+
+<!-- Hidden image to trigger counter update (still hidden) -->
+<img id="counterImg" src="https://counterapi.dev/api/page-counter?url=https://abdulrahmann001.github.io/" style="display:none;" />
+
+<!-- Script to fetch and display counter -->
+<script>
+  // Function to update the counter value
+  function updateCount() {
+    const img = document.getElementById("counterImg");
+    const url = img.src + "&json=true";
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("countNum").innerText = data.count;
+      });
+  }
+
+  // Trigger to display the visit counter when the secret click area is clicked
+  document.getElementById("secretClick").addEventListener("click", function () {
+    document.getElementById("visitCounter").style.display = "block";
+  });
+
+  // Fetch the count when the page loads
+  updateCount();
+</script>
+
+
+
+
+
+ 
+
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -100,9 +141,10 @@
             <div class="row">
                 <div class="col-lg-8">
                     <p class="lead">
-                      Computer Science graduate from Soran University with comprehensive experience in web development and software solutions.
-                        Strong problem-solving skills and general experience with a wide range of software applications and tools. .
-                        A logical and open-minded individual who values diverse perspectives and embraces collaboration.
+                        Computer Science graduate from Soran University with comprehensive expertise in web development 
+                        and software solutions. strong problem-solving skills 
+                        and experience in multiple programming paradigms. Skilled in developing efficient systems 
+                        with a focus on user-centric design and practical implementation.
                     </p>
                 </div>
                 <div class="col-lg-4">
@@ -273,3 +315,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
