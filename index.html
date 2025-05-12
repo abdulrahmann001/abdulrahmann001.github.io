@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,15 +12,11 @@
         body {
             background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            position: relative;
-            overflow-x: hidden;
         }
         .navbar {
             border-bottom: 3px solid #0d6efd;
-            background: rgba(13, 110, 253, 0.95);
-            backdrop-filter: blur(10px);
         }
-        .profile-header {
+       .profile-header {
             background: linear-gradient(135deg, #6366f1, #2563eb, #7c3aed);
             color: white;
             padding: 6rem 0 4rem;
@@ -51,96 +47,47 @@
             transform: scale(1.05);
         }
         .section-title {
-            color: #2563eb;
-            border-bottom: 3px solid;
-            display: inline-block;
+            color: #0d6efd;
+            border-bottom: 2px solid #0d6efd;
             padding-bottom: 0.5rem;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50%;
-            height: 3px;
-            background: #7c3aed;
         }
         .skill-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-            border-radius: 15px;
-            border: none;
+            transition: transform 0.3s;
         }
         .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
         }
         .progress {
             height: 25px;
-            border-radius: 12px;
-            overflow: hidden;
         }
         .custom-progress {
-            background: linear-gradient(90deg, #6366f1 0%, #7c3aed 100%);
+            background: linear-gradient(90deg, #4e73df 0%, #224abe 100%);
         }
-        .whatsapp-btn {
+       .whatsapp-btn {
             background: linear-gradient(45deg, #25D366, #128C7E);
             color: white;
             border: none;
         }
+
+
+
         .tech-icons img {
-            transition: transform 0.3s ease, filter 0.3s ease;
-            filter: grayscale(100%);
-            opacity: 0.8;
-        }
-        .tech-icons img:hover {
-            transform: translateY(-5px) scale(1.1);
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-        .bg-blobs {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-        }
-        .blob {
-            position: absolute;
-            background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(124, 58, 237, 0.05));
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: float 20s infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(100px, 100px) scale(1.1); }
-            50% { transform: translate(-50px, 150px) scale(0.9); }
-            75% { transform: translate(-100px, -50px) scale(1.05); }
-        }
-        .contact-form input,
-        .contact-form textarea {
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
-        }
+    transition: transform 0.3s ease;
+    opacity: 0.9;
+}
+.tech-icons img:hover {
+    transform: translateY(-3px);
+    opacity: 1;
+}
+
+        
     </style>
 </head>
 <body>
-    <!-- Background Blobs -->
-    <div class="bg-blobs">
-        <div class="blob" style="width: 500px; height: 500px; left: -200px; top: -200px;"></div>
-        <div class="blob" style="width: 600px; height: 600px; right: -300px; bottom: -300px;"></div>
-    </div>
-
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Abdulrahman Kamal</a>
+            <a class="navbar-brand" href="#">Abdulrahman Kamal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -157,12 +104,12 @@
 
     <!-- Header -->
     <header class="profile-header text-center">
-        <div class="container pt-5 position-relative">
+        <div class="container pt-5">
             <img src="profile.jpg" alt="Profile Photo" class="profile-img rounded-circle mb-3">
-            <h1 class="display-4 fw-bold mb-3">Abdulrahman Kamal Mohammed</h1>
-            <h3 class="fw-light">Computer Science Graduate</h3>
-            <div class="mt-4">
-                <a href="#contact" class="btn btn-light btn-lg px-4 py-2">Contact Me</a>
+            <h1>Abdulrahman Kamal Mohammed</h1>
+            <h3>Computer Science Graduate</h3>
+            <div class="mt-3">
+                <a href="#contact" class="btn btn-light btn-lg">Contact Me</a>
             </div>
         </div>
     </header>
@@ -174,10 +121,9 @@
             <div class="row">
                 <div class="col-lg-8">
                     <p class="lead">
-                        Computer Science graduate from Soran University with comprehensive experience in web development 
-                        and software solutions. Strong problem-solving skills and general experience with a wide range 
-                        of software applications and tools. A logical and open-minded individual who values diverse 
-                        perspectives and embraces collaboration.
+                      Computer Science graduate from Soran University with comprehensive experience in web development and software solutions.
+                        Strong problem-solving skills and general experience with a wide range of software applications and tools. .
+                        A logical and open-minded individual who values diverse perspectives and embraces collaboration.
                     </p>
                 </div>
                 <div class="col-lg-4">
@@ -195,8 +141,8 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="bg-light py-5">
+     <!-- Skills Section -->
+     <section id="skills" class="bg-light py-5">
         <div class="container">
             <h2 class="section-title mb-4">Technical Skills</h2>
             <div class="row g-4 justify-content-center">
@@ -208,10 +154,12 @@
                             <div class="progress-bar custom-progress" style="width: 70%"></div>
                         </div>
                         <div class="mt-2">PHP</div>
+                        
                         <div class="progress mt-3">
                             <div class="progress-bar custom-progress" style="width: 80%"></div>
                         </div>
                         <div class="mt-2">SQL</div>
+                        
                         <div class="progress mt-3">
                             <div class="progress-bar custom-progress" style="width: 70%"></div>
                         </div>
@@ -237,7 +185,7 @@
                         <div class="mt-3">
                             <h5><i class="bi bi-translate me-2"></i>Kurdish <span class="badge bg-primary">Native</span></h5>
                             <h5 class="mt-2"><i class="bi bi-translate me-2"></i>Arabic <span class="badge bg-primary">Fluent</span></h5>
-                            <h5 class="mt-2"><i class="bi bi-translate me-2"></i>English <span class="badge bg-primary">Advanced</span></h5>
+                            <h5 class="mt-2"><i class="bi bi-translate me-2"></i>English <span class="badge bg-primary">Advanced </span></h5>
                         </div>
                     </div>
                 </div>
@@ -245,62 +193,68 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-5">
-        <div class="container">
-            <h2 class="section-title mb-4">Featured Projects</h2>
-            <div class="row g-4 justify-content-center">
-                <!-- Lost and Found System -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Lost and Found Item System</h5>
-                            <p class="card-text">Web application for managing lost and found items</p>
-                            <div class="tech-icons mt-3">
-                                <div class="d-flex gap-3 justify-content-center">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" style="height: 40px">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" style="height: 40px">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original-wordmark.svg" alt="Bootstrap" style="height: 40px">
-                                </div>
+   <!-- Projects Section -->
+<section id="projects" class="py-5">
+    <div class="container">
+        <h2 class="section-title mb-4">Featured Projects</h2>
+        <div class="row g-4 justify-content-center">
+            <!-- Lost and Found System -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Lost and Found Item System</h5>
+                        <p class="card-text">Web application for managing lost and found items</p>
+                        <div class="tech-icons mt-3">
+                            <div class="d-flex gap-3 justify-content-center">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" style="height: 40px">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" alt="MySQL" style="height: 40px">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original-wordmark.svg" alt="Bootstrap" style="height: 40px">
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Web Page Based Profile Creator -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Web Page Based Profile Creator</h5>
-                            <p class="card-text">Simple tool to create and manage user profiles using web technologies.</p>
-                            <div class="tech-icons mt-3">
-                                <div class="d-flex gap-3 justify-content-center">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" style="height: 40px">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-original.svg" alt="JSON" style="height: 40px">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original-wordmark.svg" alt="Bootstrap" style="height: 40px">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" style="height: 40px">
-                                </div>
-                            </div>
-                        </div>
+            </div>
+<div class="row g-4 justify-content-center">
+    <!-- Web Page Based Profile Creator -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h5 class="card-title">Web Page Based Profile Creator</h5>
+                <p class="card-text">Simple tool to create and manage user profiles using web technologies.</p>
+                <div class="tech-icons mt-3">
+                    <div class="d-flex gap-3 justify-content-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" style="height: 40px">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-original.svg" alt="JSON" style="height: 40px">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original-wordmark.svg" alt="Bootstrap" style="height: 40px">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" style="height: 40px">
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
 
-                <!-- AI Map Navigation -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">AI Map Navigation</h5>
-                            <p class="card-text">Python-based navigation system using AI algorithms</p>
-                            <div class="tech-icons mt-3">
-                                <div class="d-flex gap-3 justify-content-center">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" alt="Python" style="height: 40px">
-                                </div>
+            <!-- AI Map Navigation -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">AI Map Navigation</h5>
+                        <p class="card-text">Python-based navigation system 
+                            using AI algorithms</p>
+                        <div class="tech-icons mt-3">
+                            <div class="d-flex gap-3 justify-content-center">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg" alt="Python" style="height: 40px">
+                             
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
     </section>
 
     <!-- Contact Section -->
@@ -309,7 +263,7 @@
             <h2 class="section-title mb-4">Get in Touch</h2>
             <div class="row g-4">
                 <div class="col-md-6">
-                    <form class="contact-form">
+                    <form>
                         <div class="mb-3">
                             <input type="text" class="form-control" placeholder="Your Name">
                         </div>
